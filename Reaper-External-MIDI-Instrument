@@ -1,0 +1,180 @@
+# Reaper: External MIDI Instrument (MiniBrute / UltraNova / etc.)
+
+### **Minimal, correct, no-mystery setup**
+
+---
+
+## 1️⃣ Physical connections
+
+**MIDI**
+
+```
+Interface MIDI OUT → Synth MIDI IN
+```
+
+**Audio**
+
+```
+Synth AUDIO OUT → Interface LINE IN
+```
+
+(Use DI / isolator if the synth hums.)
+
+---
+
+## 2️⃣ Enable MIDI in Reaper (one-time)
+
+**Options → Preferences → MIDI Devices**
+
+* Enable **MIDI Input** (if using synth keys)
+* Enable **MIDI Output** (required)
+
+---
+
+## 3️⃣ Create the MIDI track (notes → synth)
+
+1. **Insert → New Track**
+2. Track input:
+
+```
+Input: MIDI → [Interface MIDI] → Channel 1
+```
+
+3. **Record Arm: ON**
+4. **Record Monitoring: ON**
+   👉 Speaker icon **grey** and says *“Record monitoring: ON”*
+5. Track **Routing (I/O)**:
+
+```
+MIDI Hardware Output → [Interface MIDI OUT] → Channel 1
+```
+
+🎯 This track **sends MIDI** from items *and* live input.
+
+---
+
+## 4️⃣ Create the audio return track (synth → speakers)
+
+1. **Insert → New Track**
+2. Track input:
+
+```
+Input: Mono → [Line In X]
+```
+
+3. **Record Arm: ON**
+4. **Record Monitoring: ON**
+5. **Routing (I/O)**:
+
+```
+Master/Parent Send → ON
+```
+
+🎯 This track **brings the sound back**.
+
+---
+
+## 5️⃣ Playback test
+
+* Put notes in the MIDI item
+* Press **Play**
+* Synth plays
+* Audio meters move
+* Sound comes from main outs
+
+If it does → you’re done.
+
+---
+
+# 🔴 GOTCHAS (print this mentally)
+
+### ❗ 1. **Record Monitoring MUST be ON (grey speaker)**
+
+* OFF = MIDI items won’t play hardware
+* AUTO = unreliable for external synths
+* ON = correct
+
+This is the **#1 Reaper trap**.
+
+---
+
+### ❗ 2. Virtual keyboard ≠ MIDI item playback
+
+* Virtual keyboard working does **not** prove routing is correct
+* MIDI items are stricter
+
+---
+
+### ❗ 3. Audio meters ≠ audible sound
+
+You still need:
+
+```
+Track → Master → Hardware Out
+```
+
+Check:
+
+* Master/Parent Send ON
+* Master track routed to interface outputs
+
+---
+
+### ❗ 4. MIDI and audio are **separate tracks**
+
+This is intentional in Reaper.
+Use:
+
+* Folder tracks
+* Track templates
+  to keep things tidy.
+
+---
+
+### ❗ 5. Channel discipline
+
+* MIDI channel on track = synth channel
+* Audio track input = correct physical jack
+
+---
+
+### ❗ 6. Monitoring path clarity
+
+While learning:
+
+* **Mute CueMix direct monitoring**
+* Monitor through Reaper only
+  Avoids “why do I hear it twice / not at all?”
+
+---
+
+## 6️⃣ Optional (but highly recommended)
+
+### Save as a Track Template
+
+* Select MIDI + Audio tracks
+* Right-click → **Save tracks as track template**
+* Name:
+  `External Synth – MIDI + Audio`
+
+Next time:
+
+* Insert template
+* Change input numbers
+* Done in 10 seconds
+
+---
+
+## One-line mental rule (the big takeaway)
+
+> **In Reaper, external hardware only works when record monitoring is ON.**
+
+Lock that in and Reaper becomes a joy instead of a puzzle.
+
+If you want next, I can:
+
+* Give you a **3-synth template**
+* Show how to **print MIDI → audio cleanly**
+* Or help you build a **hybrid Ableton/Reaper mental map**
+
+But you’re now fully up and running.
